@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>chu vi chu nhat</h1>
+    <br>
+    <input type="number" id="width">
+    <h2>dien tich chu nhat</h2>
+    <br>
+    <input type="number" id="height">
+    <button onclick="ketqua()">ket qua</button>
+    <p id="chuvidientich"></p>
+    <canvas id="myCanvas" width="1000px" height="800px"></canvas>
+    <script>
+        let Rectangle = function (width, height) {
+            this.width = width;
+            this.height = height;
+            this.chuvi = function () {
+                return (Number(this.width) + Number(this.height)) * 2;
+            }
+            this.dientich = function () {
+                return (Number(this.width) * Number(this.height));
+            }
+            this.drawCanvas = function () {
+                var c = document.getElementById("myCanvas");
+                let ctx = c.getContext("2d");
+                ctx.beginPath();
+                ctx.fillRect(50, 50, this.width, this.height);
+                ctx.rect(50, 50, this.width, this.height);
+                ctx.stroke();
+            }
+        }
+        function ketqua() {
+            let width = document.getElementById("width").value
+            let height = document.getElementById("height").value
+            let a = new Rectangle(width, height);
+            a.drawCanvas();
+            cv = a.chuvi();
+            dt = a.dientich();
+            result = 'chuvi' + cv + '<br>' + 'dien tich' + dt;
+            document.getElementById("chuvidientich").innerHTML = result;
+        }
